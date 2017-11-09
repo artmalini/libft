@@ -19,7 +19,7 @@ char	*ft_strmap(char const *s, char (*f)(char))
 	char	*mas;
 
 	i = 0;
-	if (s == NULL)
+	if (!s || !f)
 		return (NULL);
 	ln = ft_strlen(s);
 	mas = ft_strnew(ln);
@@ -27,9 +27,9 @@ char	*ft_strmap(char const *s, char (*f)(char))
 		return (NULL);
 	while (s[i] != '\0')
 	{
-		mas[i] = f(mas[i]);
+		mas[i] = f(s[i]);
 		i++;
-	}
+	}	
 	mas[i] = '\0';
 	return (mas);
 }

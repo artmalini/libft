@@ -15,6 +15,8 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <fcntl.h>
+
+#include <limits.h>
 void ft_putstrit(char *mas)
 { 
    int i;
@@ -494,11 +496,12 @@ int   main(int argc, char **argv)
       printf("strnstr %s\n", strnstr("Blackbird", fn3, 8));       //rd
       printf("MYstrnstr %s\n", ft_strnstr("Blackbird", fn3, 8));  //rd 
 
-      char  *s25 = "see FF your FF return FF now FF";
-      char  *s26 = "FF";
+      char  *s25 = "FF";
+      char  *s26 = "see FF your FF return FF now FF";
+      size_t  max25 = strlen(s26);//31
 
-     printf("strnstr %s\n", strnstr(s25, s26, 4));       
-      printf("MYstrnstr %s\n", ft_strnstr(s25, s26, 4)); 
+     printf("strnstr %s\n", strnstr(s25, s26, max25));       
+      printf("GMYstrnstr %s\n", ft_strnstr(s25, s26, max25)); 
      // printf("strnstr %s\n", strnstr(NULL, s26, 4));       
      // printf("MYstrnstr %s\n", ft_strnstr(s25, NULL, 4)); 
     printf("strnstr %s\n", strnstr(s25, "", 4));       
@@ -511,7 +514,17 @@ int   main(int argc, char **argv)
       char mso12[] = "Blackbird";
       char fn4[] = "Blackbird";
       char mso15[] = "Blacakbird";
-      char fn9[] = "Blackbird";      
+      char fn9[] = "Blackbird";
+      char  *s27 = "\0";
+      char  *s28 = "\200";
+      char  *s29 = "\x12\xff\x65\x12\xbd\xde\xad";
+      char  *s30 = "\x12\x02";
+      printf("strcmp %d\n", strcmp(s27, s28));
+      printf("MYstrcmp %d\n", ft_strcmp(s27, s28));
+
+      printf("strcmp %d\n", strcmp(s29, s30));
+      printf("MYstrcmp %d\n", ft_strcmp(s29, s30));
+
       printf("strcmp %d\n", strcmp(mso12, fn4));
       printf("MYstrcmp %d\n", ft_strcmp(mso12, fn4));
       printf("strcmp %d\n", strcmp(mso15, fn9));
@@ -534,8 +547,16 @@ int   main(int argc, char **argv)
       char mso14[] = "     +-1234Blackbird";
       char at[] = "     -1234Bl5ackbird";
       char at1[] = "  \t \n  +1234Bl5ackbird";
+      char  *mso16 = "\e06050";
+
+           printf("atoi %d\n", atoi(mso16));
+      printf("MYatoi %d\n", ft_atoi(mso16));
       printf("atoi %d\n", atoi("12345678900000000"));
-      printf("MYatoi %d\n", ft_atoi("12345678900000000"));
+      printf("MYatoi %d\n", ft_atoi("12345678900000000")); 
+      printf("atoi %d\n", atoi("99999999999999999999999999"));
+      printf("overMYatoi %d\n", ft_atoi("99999999999999999999999999"));
+            printf("atoi %d\n", atoi("-99999999999999999999999999"));
+      printf("minoverMYatoi %d\n", ft_atoi("-99999999999999999999999999"));      
       printf("atoi %d\n", atoi(mso14));
       printf("atoi %d\n", atoi(at));
       printf("atoi %d\n", atoi(at1));
@@ -543,6 +564,7 @@ int   main(int argc, char **argv)
       printf("MYatoi %d\n", ft_atoi(at));
        printf("MYatoi %d\n", ft_atoi(at1));
 
+       //char n1[40];
  /////////////////////////////////////////////////////                            !!! 22
        printf("\n\n");
       printf("isalpha                          (22)\n");
@@ -718,7 +740,7 @@ int   main(int argc, char **argv)
       printf("\n\n");
       printf("ft_strmap                      (36)\n");
       char mas12[] = "Blackbird";
-      printf("MYft_strmap|\n");
+      printf("MYft_strmap\n");
       char *mas13;
       mas13 = ft_strmap(mas12, &ft_putstrmap);
       i = 0;
@@ -781,6 +803,10 @@ int   main(int argc, char **argv)
       printf("%s\n", ft_strsub(mas24, 3, 10));                 // ckbird
       printf("%s\n", ft_strsub(mas24, 6, 1));                  // null
 
+       char  *mas33 = "i just want this part #############";  //t want this part ###
+      printf("%s\n", ft_strsub(mas33, 5, 20));
+
+
 /////////////////////////////////////////////////////                            !!! 41
       printf("\n\n");
       printf("ft_strjoin                           (41)\n");
@@ -794,7 +820,7 @@ int   main(int argc, char **argv)
       printf("\n\n");
       printf("ft_strtrim                           (42)\n");
       char mas28[] = "Blackbird"; 
-      char mas29[] = "     \nBlackbird";
+      char mas29[] = "   \t  \n\n \t\t  \n\n\nHello \t  Please\n Trim me !\n   \n \n \t\t\n  ";
       char mas30[] = "Blackbird    \t    \n";
       char *mas31;
       mas31 = 0;
@@ -802,13 +828,19 @@ int   main(int argc, char **argv)
       printf("%s\n", ft_strtrim(mas29));                    //Blackbird
       printf("%s\n", ft_strtrim(mas30));                    //Blackbird
       printf("%s\n", ft_strtrim(mas31));                    //NULL
+      printf("blank %s\n", ft_strtrim("  \t \t \n   \n\n\n\t"));
+      printf("empty %s\n", ft_strtrim(""));
+       //printf("%zu\n", ft_strlen("")); 
+      // printf("%zu\n", ft_strlen("  \t \t \n   \n\n\n\t")); 
 
+     // printf("%lu\n", strlen("Hello \t  Please\n Trim me !"));//26 length
+      //printf("cmp %d\n", strcmp("", ""));
 /////////////////////////////////////////////////////                            !!! 43
       printf("\n\n");
       printf("ft_strsplit                          (43)\n");
-      char *obj3 = "*hello*fellow***students*";          
+      char *obj3 = "split  ||this|for|me|||||!|";          
       char **obj4;
-      obj4 = ft_strsplit(obj3, '*');
+      obj4 = ft_strsplit(obj3, '|');
 
       i = 0;
       if (obj4 != NULL)
@@ -820,12 +852,13 @@ int   main(int argc, char **argv)
          }
       }
       printf("\n");
+       //printf("%s\n", obj4[0]);
       printf("%s\n", ft_strsplit("BlacK", '*')[0]);               //Black
       printf("%s\n", ft_strsplit("***", '*')[0]);                 //null     
       printf("%s\n", ft_strsplit("***YO", '*')[0]);               //YO
       printf("%s\n", ft_strsplit("DJ**", '*')[0]);                //DJ
       printf("%s\n", ft_strsplit("____xDD", '_')[0]);             //xDD
-      printf("%s\n", ft_strsplit("^^^^^Whats' UP", '^')[0]);      //Whats' UP
+      //printf("%s\n", ft_strsplit("^^^^^Whats' UP", '^')[0]);      //Whats' UP
 
 /////////////////////////////////////////////////////                            !!! 44
       printf("\n\n");

@@ -19,7 +19,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	char			*mas;
 
 	i = 0;
-	if (s == NULL)
+	if (!s || !f)
 		return (NULL);
 	ln = ft_strlen(s);
 	mas = ft_strnew(ln);
@@ -27,7 +27,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 		return (NULL);
 	while (s[i] != '\0')
 	{
-		mas[i] = f(i, mas[i]);
+		mas[i] = f(i, s[i]);
 		i++;
 	}	
 	mas[i] = '\0';

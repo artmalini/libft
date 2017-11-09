@@ -15,62 +15,29 @@
 char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
 	size_t	i;
-	size_t	j;
-	char	*str;
+	char	*ret;
 	
-	i = 1;
-	j = 0;
-	//str = (char *)big;
+	i = 0;
 	if (*little == 0 && *big != 0)
 		return ((char*)big);
-	while (*big && i < len)
-	{
-		//while (big[i] != little[j] && big[i])
-		//	i++;
-		while (*big != *little && *big)
-			++big;
-		//str = (char*)&(big[i]);
-		str = (char *)little;
-		while (*big == *little && *big && *little && i < len)
+	while (*big != '\0' && i < len)
+	{		
+		while (*big != '\0' && *little != '\0' && *big != *little)
 		{
-			big++, 
-			little++;
 			i++;
+			big++;
 		}
-		//if (!little[j])
-		if (!*little)
+		ret = (char *)big;
+		while ((*big != '\0' && *little != '\0') && (*big == *little && i < len))
 		{
-			//return (str);
-			return ((char *)big);
+			i++;
+			big++;
+			little++;
 		}
-
-		//else
-		//{
-		//	little++;
-		//}	
-		i++;	
+		if (*little == '\0')
+		{
+			return (ret);
+		}
 	}
 	return (NULL);
 }
-
-	/*size_t	i;
-	size_t	j;
-	char	*str;
-
-		i = 0;
-		j = 0;
-		if (little[i] == 0 && big[i] != 0)
-			return ((char*)s1);
-		while (s1[i] && i < n)
-		{
-			while (s1[i] != s2[j] && s1[i])
-				i++;
-			str = (char*)&(s1[i]);
-			while (s1[i] == s2[j] && s1[i] && s2[j] && i < n)
-				i++, j++;
-			if (!s2[j])
-				return (str);
-			else
-				j = 0;
-		}
-	return (NULL);*/

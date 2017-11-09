@@ -12,31 +12,47 @@
 
 #include "../includes/libft.h"
 
-char	*ft_strtrim(char const *s)
+static size_t		findstr(char const *s, size_t begin)
 {
-	size_t		i;
 	size_t		j;
+	size_t		last;
+
+	if (s || begin)
+	{
+		j = 0;
+		last = ft_strlen(s) - 1;
+		while ((s[last] == ' ' || s[last] == '\n' || s[last] == '\t'))
+		{
+			j++;
+			last--;
+		}
+		return (j);
+	}
+	return (0);
+}
+
+char				*ft_strtrim(char const *s)
+{
+	size_t		j;
+	size_t		i;
 	size_t		begin;
-	size_t		len;
 	char		*mas;
 
-	i = 0;
+	if (!s)
+		return (NULL);
 	begin = 0;
-	if (s == NULL)
+	while (*s != '\0' && (*s == ' ' || *s == '\t' || *s == '\n') && ++begin)
+		s++;
+	if (ft_strlen(s) == 0)
+		return (ft_strdup(""));
+	j = findstr(s, begin);
+	mas = ft_strnew(ft_strlen(s) - j);
+	if (!mas)
 		return (NULL);
-	while (s[i] && (s[i] == ' ' || s[i] == '\n' || s[i] == '\t'))
-	{
-		begin++;
-		i++;
-	}
-	len = ft_strlen(s);
-	j = len - 1;
-	while (s[j] == ' ' || s[j] == '\n' || s[j] == '\t')
-		j--;
-	if (j - begin > 0)
-		len = j - begin;
-	mas = ft_strnew(len);
-	if (mas == NULL)
-		return (NULL);
-	return (ft_strsub(s, (unsigned int)begin, j + 1));
+	i = 0;
+	j = ft_strlen(s) - j;
+	while (i < j)
+		mas[i++] = *s++;
+	mas[i] = '\0';
+	return (mas);
 }

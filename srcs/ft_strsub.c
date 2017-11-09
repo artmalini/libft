@@ -18,16 +18,17 @@ char	*ft_strsub(char const *s, unsigned int start, size_t len)
 	size_t	str;
 	char	*mas;
 
+	if (!s)
+		return (NULL);
 	i = (size_t)start;
 	str = ft_strlen(s);
 	if ((i > str) || (len > str || len < i) || (i == len))
 		return (NULL);
-	str = len - i;
-	mas = ft_strnew(str);
+	mas = ft_strnew(len);
 	if (mas == NULL)
 		return (NULL);
 	i = 0;
-	while (start < len)
+	while (i < len)
 		mas[i++] = s[start++];
 	mas[i] = '\0';
 	return (mas);
