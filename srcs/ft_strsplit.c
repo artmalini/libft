@@ -12,125 +12,77 @@
 
 #include "../includes/libft.h"
 
-static int			findlnword(char const *s, char c, int startwrd)
+static int		count_words(char const *s, char c)
 {
-	int		len;
-	int		lenmap;
+	int len;
 
-	len = 1;
-	lenmap = 0;	
+	len = 0;
 	while (*s != '\0')
 	{
-		if (*s != c)
-		{
-			while (*s != c && *s != '\0')
-			{
-				if (len == startwrd)
-					lenmap++;
-				s++;
-			}
+		while (*s == c)
+			s++;
+		if (*s != c && *s != '\0')
 			len++;
+		while (*s != c && *s != '\0')
 			s++;
-		}
+	}
+	return (len);	
+}
+
+static int		getword_len(char const *s, char c)
+{
+	int	len;
+
+	len = 0;
+	while (*s == c)
 		s++;
-	}
-	return (lenmap);
-}
-
-static size_t		findln(char const *s, char c)
-{
-	size_t		i;
-	size_t		j;
-	size_t		ln;
-
-	i = 0;
-	j = 0;
-	ln = 0;
-	while (s[i] != '\0')
+	while (*s != c && *s != '\0')
 	{
-		if (s[i] != c)
-		{
-			j = i;
-			while (s[j] != c && s[j + 1] != '\0')
-				j++;
-			ln++;
-			i = j;
-		}
-		i++;
+		s++;
+		len++;
 	}
-	return (ln);
-}
-
-static char		*builder(char const *s, char *mas, char c, int startwrd)
-{
-	int		k;
-	int		count;
-
-	k = 0;
-	count = 0;
-	while (*s != '\0')
-	{
-		if ((*s != c && count == startwrd) || (*s != c && startwrd == 1))
-		{
-			while (*s != c && *s != '\0')
-				mas[k++] = *s++;
-			count++;
-			startwrd++;
-		}
-		else if (*s == c)
-		{
-			while (*s == c)
-				s++;
-			count++;
-		}
-		else
-			s++;
-	}
-	mas[k] = '\0';
-	return (mas);
-}
-
-static char		*findword(char const *s, char c, int startwrd)
-{
-	char	*mas;
-	int		lenmap;
-
-	lenmap = 0;
-	lenmap = findlnword(s, c, startwrd);
-	if ((mas = (char *)malloc(lenmap)) == NULL)
-		return (NULL);
-	mas = builder(s, mas, c, startwrd);
-	return (mas);
+	return (len);
 }
 
 char			**ft_strsplit(char const *s, char c)
 {
-	char	**arr;
-	char	*word;
 	int		i;
+	int		k;
 	int		len;
-	int		startwrd;
+	char	**mas;
 
-	if (s && c)
+	if (!s)
+		return (NULL);
+	len = count_words(s, c);
+	if (!(mas = (char **)malloc(sizeof(*mas) * (len + 1))))
+		return (NULL);
+	i = -1;
+	while (++i < len)
 	{
-		i = 0;
-		startwrd = 1;
-		len = findln(s, c);
-		printf("len %d\n", len);
-		if (s == NULL)
-			return (NULL);
-		if ((arr = (char **)malloc(sizeof(*arr) * (len + 1))) == NULL)
-			return (NULL);
-		while (i < len)
-		{
-			word = findword(s, c, startwrd);
-			printf("word %s\n", word);
-			arr[i] = word;
-			startwrd++;
-			i++;
-		}
-		arr[i] = NULL;
-		return (arr);
+		k = 0;
+		if (!(*(mas + i) = (char *)malloc(getword_len(s, c) + 1)))
+			*(mas + i) = NULL;
+		while (*s == c)
+			s++;
+		while (*s != c && *s)
+			*(*(mas + i) + k++) = (char)*s++;
+		*(*(mas + i) + k) = '\0';
 	}
-	return (NULL);
+	*(mas + i) = 0;
+	return (mas);
 }
+
+/*
+	while (++i < len)
+	{
+		k = 0;
+		if (!(mas[i] = (char *)malloc(getword_len(&s[j], c) + 1)))
+			mas[i] = NULL;
+		while (s[j] == c)
+			j++;
+		while (s[j] != c && s[j])
+			mas[i][k++] = s[j++];
+		mas[i][k] = '\0';
+	}
+	mas[i] = 0;
+*/
