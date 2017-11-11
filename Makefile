@@ -22,7 +22,6 @@ all: $(NAME)
 $(NAME):
 		$(GC) $(CFLAGS) $(SRC)
 		ar rc $(NAME) $(OBJ)
-		gcc main.c -L. -lft -o tst
 
 clean:
 		rm -f $(OBJ)
