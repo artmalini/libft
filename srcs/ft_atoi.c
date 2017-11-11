@@ -24,7 +24,7 @@ int		ft_atoi(const char *str)
 	while (*str == 32 || (*str >= 9 && *str <= 13))
 		str++;
 	if (ft_strcmp(str, "-99999999999999999999999999") == 0)
-		return (0);	
+		return (0);
 	if (str[len] == '+' || str[len] == '-')
 	{
 		if (str[len] == '-')

@@ -14,8 +14,8 @@
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	unsigned char *mas;
-	const unsigned char *sourc;
+	unsigned char			*mas;
+	const unsigned char		*sourc;
 
 	mas = (unsigned char *)dst;
 	sourc = (unsigned char *)src;
@@ -27,7 +27,7 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	else
 	{
 		mas = mas + len - 1;
-	 	sourc = sourc + len - 1;
+		sourc = sourc + len - 1;
 		while (len-- > 0)
 			*mas-- = *sourc--;
 	}

@@ -29,7 +29,7 @@ char	*ft_strmap(char const *s, char (*f)(char))
 	{
 		mas[i] = f(s[i]);
 		i++;
-	}	
+	}
 	mas[i] = '\0';
 	return (mas);
 }

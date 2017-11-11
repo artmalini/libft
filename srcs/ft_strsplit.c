@@ -26,7 +26,7 @@ static int		count_words(char const *s, char c)
 		while (*s != c && *s != '\0')
 			s++;
 	}
-	return (len);	
+	return (len);
 }
 
 static int		getword_len(char const *s, char c)
@@ -71,18 +71,3 @@ char			**ft_strsplit(char const *s, char c)
 	*(mas + i) = 0;
 	return (mas);
 }
-
-/*
-	while (++i < len)
-	{
-		k = 0;
-		if (!(mas[i] = (char *)malloc(getword_len(&s[j], c) + 1)))
-			mas[i] = NULL;
-		while (s[j] == c)
-			j++;
-		while (s[j] != c && s[j])
-			mas[i][k++] = s[j++];
-		mas[i][k] = '\0';
-	}
-	mas[i] = 0;
-*/

@@ -15,17 +15,12 @@
 char	*ft_strsub(char const *s, unsigned int start, size_t len)
 {
 	size_t	i;
-	size_t	str;
 	char	*mas;
 
 	if (!s)
 		return (NULL);
-	i = (size_t)start;
-	str = ft_strlen(s);
-	if ((i > str) || (len > str || len < i) || (i == len))
-		return (NULL);
 	mas = ft_strnew(len);
-	if (mas == NULL)
+	if (!mas)
 		return (NULL);
 	i = 0;
 	while (i < len)

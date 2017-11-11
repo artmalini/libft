@@ -397,7 +397,7 @@ int   main(int argc, char **argv)
       /*
  * Appends src to string dst of size siz (unlike strncat, siz is the
  * full size of dst, not space left).  At most siz-1 characters
- * will be copied.  Always NUL terminates (unless size <= strlen(dst)).
+ * will be copied.  Always NUL terminates (unless size (dst)).
  * Returns strlen(src) + MIN(size, strlen(initial dst)).
  * If retval >= size, truncation occurred.
  */
@@ -507,7 +507,13 @@ int   main(int argc, char **argv)
     printf("strnstr %s\n", strnstr(s25, "", 4));       
     printf("MYstrnstr %s\n", ft_strnstr(s25, "", 4));
 
+    char *s31 = "ozarabozaraboze123";
+    printf("strnstr %s\n", strnstr(s31, "ozaraboze", 15));      //ozaraboze123  
+    printf("MYstrnstr %s\n", ft_strnstr(s31, "ozaraboze", 15));
 
+    char *s32 = "un deux 9";
+    printf("strnstr %s\n", strnstr(s32, "deux", 5));      //null  
+    printf("MYstrnstr %s\n", ft_strnstr(s32, "deux", 5));
  /////////////////////////////////////////////////////                            !!! 19
        printf("\n\n");
       printf("ft_strcmp                          (19)\n");
@@ -539,7 +545,10 @@ int   main(int argc, char **argv)
       printf("MYstrncmp %d\n", ft_strncmp(mso13, fn5, 10));
       printf("strncmp %d\n", strncmp(mso13, fn5, 8));
       printf("MYstrncmp %d\n", ft_strncmp(mso13, fn5, 8));
-
+      printf("strncmp %d\n", strncmp("g", "a", 0));
+      printf("MYstrncmp %d\n", ft_strncmp("g", "a", 0));
+      printf("strncmp %d\n", strncmp("abc", "abcde", 3));
+      printf("MYstrncmp %d\n", strncmp("abc", "abcde", 3));      
 
  /////////////////////////////////////////////////////                            !!! 21
        printf("\n\n");
@@ -641,17 +650,18 @@ int   main(int argc, char **argv)
   /////////////////////////////////////////////////////                            !!! 29
        printf("\n\n");
        printf("memalloc                         (29)\n");
-      char *m = ft_memalloc(5);
+      char *m = ft_memalloc(6);
+      ft_strcpy(m, "black");
       i = 0;
       if (m != NULL)
       {
-         while (*m == 0)
-         {
-            printf("%d", *m);                               //00000
-            m++;
-         }
-      }
-
+         printf("%s\n", m);
+      }  
+      void **z1 = (void *)&m;  
+      free(*z1);
+      *z1 = NULL;
+      if (m == NULL)
+        printf("free");
    /////////////////////////////////////////////////////                            !!! 30
        printf("\n\n");
        printf("memdel                         (30)\n");
@@ -661,7 +671,7 @@ int   main(int argc, char **argv)
        strcpy(a, "tut");
        printf("%s, %p\n",a, a);
 
-       /*void **z = (void *)&a;
+      /* void **z = (void *)&a;
        if (*z)
        {
          free(*z);
@@ -792,6 +802,7 @@ int   main(int argc, char **argv)
       printf("%d\n", ft_strnequ(mas20, mas21, 9));             //1
       printf("%d\n", ft_strnequ(mas20, mas21, 7));             //1
       printf("%d\n", ft_strnequ(mas22, mas23, 7));             //0
+      printf("%d\n", ft_strnequ("ededeqdf", "", 0));
 
 
 /////////////////////////////////////////////////////////////                            !!! 40
@@ -860,15 +871,20 @@ int   main(int argc, char **argv)
       printf("%s\n", ft_strsplit("____xDD", '_')[0]);             //xDD
       //printf("%s\n", ft_strsplit("^^^^^Whats' UP", '^')[0]);      //Whats' UP
 
+
 /////////////////////////////////////////////////////                            !!! 44
       printf("\n\n");
       printf("ft_itoa                          (44)\n");
       printf("%s\n", ft_itoa(-2147483648));
       printf("%s\n", ft_itoa(-21474836));
       printf("%s\n", ft_itoa(2147483647));
-      printf("%s\n", ft_itoa(52346));
+      printf("%s\n", ft_itoa(52));
       printf("%s\n", ft_itoa(0));
       printf("%s\n", ft_itoa(1));
+      printf("%s\n", ft_itoa(123));
+      printf("%s\n", ft_itoa(-123));
+
+      //printf("size %lu\n", sizeof(ft_itoa(2147483647)));
 
 /////////////////////////////////////////////////////                            !!! 45
       printf("\n\n");

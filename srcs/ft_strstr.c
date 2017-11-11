@@ -32,7 +32,7 @@ char	*ft_strstr(const char *big, const char *little)
 		while (big[i + j] == little[j])
 		{
 			if (j == len1 - 1)
-				return ((char *)big +  i);
+				return ((char *)big + i);
 			j++;
 		}
 		j = 0;
