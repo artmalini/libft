@@ -12,16 +12,17 @@
 
 NAME = libft.a
 GC = gcc
-CFLAGS = -c -Wall -Wextra -Werror -I /includes/*.h
+CFLAGS = -c -Wall -Wextra -Werror -I libft.h
 SOURCE = *.c
 OBJ = $(SOURCE:.c=.o)
-	SRC = $(patsubst %, srcs/%, $(SOURCE))
+	SRC = $(patsubst %, %, $(SOURCE))
 
 all: $(NAME)
 
 $(NAME):
 		$(GC) $(CFLAGS) $(SRC)
 		ar rc $(NAME) $(OBJ)
+		gcc main.c -L. -lft -o tst
 
 clean:
 		rm -f $(OBJ)

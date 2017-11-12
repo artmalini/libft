@@ -10,14 +10,30 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/libft.h"
+#include "libft.h"
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
 #include <fcntl.h>
+#include <stdio.h>
 
 #include <limits.h>
-void ft_putstrit(char *mas)
+void  checkdiference(void *s1, const void *s2)
+{
+    unsigned char     *mas;
+  const unsigned char   *sourc;
+
+  mas = (unsigned char *)s1;
+  sourc = (unsigned char *)s2;
+
+    if (mas >= sourc)
+  {
+    printf("ok");
+  }
+  else
+    printf("s1 less");
+}
+static void ft_putstrit(char *mas)
 { 
    int i;
    i = 0;
@@ -28,7 +44,7 @@ void ft_putstrit(char *mas)
    }
 }
 
-void ft_putstriter(unsigned int i, char *mas)
+static void ft_putstriter(unsigned int i, char *mas)
 {
    write(1, &mas[i], 1);
    write(1, "\n", 1);
@@ -50,7 +66,7 @@ char ft_putstrmapi(unsigned int i, char c)
 }
 
 
-void ft_putstrlist(t_list *list)
+static void ft_putstrlist(t_list *list)
 {
    while (list)
    {
@@ -60,7 +76,7 @@ void ft_putstrlist(t_list *list)
    }
 }
 
-void ft_dellinks(void *mas, size_t x)
+static void ft_dellinks(void *mas, size_t x)
 {
   int   i;
   char *mas1;
@@ -77,7 +93,7 @@ void ft_dellinks(void *mas, size_t x)
      // printf("%s %p\n", mas, mas);
 }
 
-void makeputstr(t_list *list)
+static void makeputstr(t_list *list)
 {
      while (list)
    {
@@ -100,7 +116,7 @@ t_list  **dmlist(t_list **head,void const *content, size_t content_size)
   return (head);
 }
 
-void parselist(t_list *elem)
+static void parselist(t_list *elem)
 {
   while (elem != NULL)
   {
@@ -129,14 +145,14 @@ t_list *parsemap(t_list *elem)
 
 
 
-int   main(int argc, char **argv)
+int   main(void)
 {
 /////////////////////////////////////////////////////                            !!! 1
       printf("\n\n");
       printf("ft_memset                          (1)\n");
   int   i;
-  char str[] = "Blackbird";
-  int  str1[] = {0, 1, 2, 3, 4};                          //memset  $$$$$$$rd
+  char str[] = "Blackbird";  
+  //int  str1[] = {0, 1, 2, 3, 4};                          //memset  $$$$$$$rd
                                                             //MYmemset $$$$$$$rd
   printf("memset  %s\n", memset(str,'$',7));
   printf("MYmemset %s\n", ft_memset(str,'$',7));
@@ -144,7 +160,7 @@ int   main(int argc, char **argv)
 /////////////////////////////////////////////////////                            !!! 2
       printf("\n\n");
       printf("ft_bzero                          (2)\n");
-      char mas40[] = "Blackbird";
+      char mas40[] = "Blackbirds";
       char mas41[] = "Blackbird";
 
       bzero(mas40,7);
@@ -172,13 +188,14 @@ int   main(int argc, char **argv)
       char bz[] = "Blackbird";
   char ll[20];
    char ll2[20];
-
+  // char str5[] = "Blackbird";
 
   memcpy(ll, bz, strlen(bz) + 1);                         //memcpy_char Blackbird
   ft_memcpy(ll2, bz, strlen(bz) + 1);                     //MYmemcpy_char Blackbird
    
    printf("memcpy_char %s\n", ll);
    printf("MYmemcpy_char %s\n", ll2);
+    
 
 
  /////////////////////////////////////////////////////                            !!! 4
@@ -205,14 +222,18 @@ int   main(int argc, char **argv)
 /////////////////////////////////////////////////////                            !!! 5
       printf("\n\n");
       printf("ft_memmove                          (5)\n");
-   char oldbv[] = "Black bird .....";
+   char oldbv[] = "Black bird .....y";
   char oldbv2[] = "Black bird .....";
-  const char bv2[] = "ANGRY";
+  //const char bv2[] = "ANGRY";
   
    memmove(oldbv+11, oldbv+6, 5);                        //Black bird bird
   ft_memmove(oldbv2+11, oldbv+6, 5);                    //Black bird bird
-   printf("memmove_char %s\n", oldbv);
+   //printf("memmove_char %s\n", oldbv);
   //printf("MYmemmove_char %s\n", oldbv2);
+
+   //char oldbv3[] = "Black birds";
+  //char oldbv4[] = "Black bird";
+  //checkdiference(oldbv3, oldbv4);
 
 
       /*int   size = 128 * 1024 * 1024;
@@ -298,7 +319,7 @@ int   main(int argc, char **argv)
       printf("\n\n");
       printf("ft_strdup                          (9)\n");
       char mas42[] = "Blackbird";
-      char mas43[] = "Blackbird";
+      //char mas43[] = "Blackbird";
       char *mas44; 
       char *mas45;
       mas44 = strdup(mas42);      
@@ -558,22 +579,69 @@ int   main(int argc, char **argv)
       char at1[] = "  \t \n  +1234Bl5ackbird";
       char  *mso16 = "\e06050";
 
+      printf("atoi %d\n", atoi("347547345"));
+      printf("MYatoi %d\n", ft_atoi("347547345"));
            printf("atoi %d\n", atoi(mso16));
       printf("MYatoi %d\n", ft_atoi(mso16));
-      printf("atoi %d\n", atoi("12345678900000000"));
-      printf("MYatoi %d\n", ft_atoi("12345678900000000")); 
+      printf("atoi %d\n", atoi("123456789000000"));
+      printf("MYatoi %d\n", ft_atoi("123456789000000")); 
+      printf("atoi %d\n", atoi("15699999999999999999999657"));//-1717986919
+      printf("overMYatoi %d\n", ft_atoi("15699999999999999999999657"));
+            printf("minatoi %d\n", atoi("-99999999999999999999999999"));
+      printf("minoverMYatoi %d\n", ft_atoi("-99999999999999999999999999"));
       printf("atoi %d\n", atoi("99999999999999999999999999"));
-      printf("overMYatoi %d\n", ft_atoi("99999999999999999999999999"));
-            printf("atoi %d\n", atoi("-99999999999999999999999999"));
-      printf("minoverMYatoi %d\n", ft_atoi("-99999999999999999999999999"));      
+      printf("minoverMYatoi %d\n", ft_atoi("99999999999999999999999999"));
+            printf("atoi %d\n", atoi("12345678900000045"));
+      printf("MYatoi %d\n", ft_atoi("12345678900000045"));
+       printf("atoi %d\n", atoi("123456789000000454575685648654885648456"));
+      printf("MYatoi %d\n", ft_atoi("123456789000000454575685648654885648456"));
+    
       printf("atoi %d\n", atoi(mso14));
       printf("atoi %d\n", atoi(at));
       printf("atoi %d\n", atoi(at1));
       printf("MYatoi %d\n", ft_atoi(mso14));
       printf("MYatoi %d\n", ft_atoi(at));
        printf("MYatoi %d\n", ft_atoi(at1));
+       printf("atoi %d\n", atoi("2147483648"));
+      printf("MYatoi %d\n", ft_atoi("2147483648"));
+       printf("atoi %d\n", atoi("12345678900000033"));
+      printf("MYatoi %d\n", ft_atoi("12345678900000033"));
+      printf("atoi %d\n", atoi("1234567890000003333"));
+      printf("MYatoi %d\n", ft_atoi("1234567890000003333"));
+      
+      printf("atoi %d\n", atoi("123456789000000333355"));
+      printf("MYatoi %d\n", ft_atoi("123456789000000333355"));
+      printf("atoi %d\n", atoi("1234567890000003333556"));
+      printf("MYatoi %d\n", ft_atoi("1234567890000003333556"));
+      //printf("atoi %d\n", atoi("1844674407370955161"));
 
+      printf("atoi %d\n", atoi("12345678900000033334"));
+      printf("MYatoi %d\n", ft_atoi("12345678900000033334")); //1584821707
+      printf("atoi %d\n", atoi("123456789000000333333"));
+      printf("MYatoi %d\n", ft_atoi("123456789000000333333"));
+      printf("atoi %d\n", atoi("1234567890000003333333"));
+    printf("MYatoi %d\n", ft_atoi("1234567890000003333333"));
+ 
+
+        //rintf("atoi %d\n", atoi("9223372036854775807"));
+//printf("VVUlongMax %li\n", ULONG_MAX);
+//printf("UlongMax %li\n", ULONG_MIN);
        //char n1[40];
+
+       //unsigned long my_long = ULONG_MAX;
+    //int my_int = (int) my_long;
+   // printf("%lu\n", my_long); //18446744073709551615
+   // printf("%i\n", my_int);// -1
+
+
+      unsigned long cutofff;
+  int cutlimm;
+    cutofff = (unsigned long)ULONG_MAX / (unsigned long)10; //18446744073709551615 //1844674407370955161
+  cutlimm = (unsigned long)ULONG_MAX % (unsigned long)10; //5
+  printf("cutofff %lu\n", cutofff);
+  printf("cutlimm %d\n", cutlimm);
+  printf("unsigned long long int: \n%llu to %llu \n\n",
+       0ULL, (unsigned long long) ULONG_MAX);
  /////////////////////////////////////////////////////                            !!! 22
        printf("\n\n");
       printf("isalpha                          (22)\n");
@@ -823,7 +891,7 @@ int   main(int argc, char **argv)
       printf("ft_strjoin                           (41)\n");
       char mas25[] = "The best "; //9len
       char mas26[] = "Blackbird";  //9len 
-      char *mas27;
+      //char *mas27;
       printf("%s\n", ft_strjoin(mas25, mas26));             //The best Blackbird
       //printf("%s\n", ft_strjoin(mas25, mas27));             //NULL
 
@@ -914,7 +982,9 @@ int   main(int argc, char **argv)
       printf("\n");
       ft_putnbr(0);
       printf("\n");
-      ft_putnbr(1);             
+      ft_putnbr(1); 
+      printf("\n");
+      ft_putnbr(000);            
 
 /////////////////////////////////////////////////////                            !!! 49
       printf("\n\n");
@@ -1004,6 +1074,9 @@ int   main(int argc, char **argv)
 
       new = ft_lstmap(list, &parsemap);   
       makeputstr(new);    
+
+printf("\n\n");
+      ft_putchar_len("BlackBirdgTheBest");
 
   i = 0;
   return (0);
