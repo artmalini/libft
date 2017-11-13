@@ -86,8 +86,9 @@ void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 
-void				ft_putchar_len(char *str);
 size_t				ft_whitetrim(char const *s, size_t begin);
+int					ft_int_length(int n);
+int					ft_minint(int n);
 int					ft_count_words(char const *s, char c);
 int					ft_getword_len(char const *s, char c);
 

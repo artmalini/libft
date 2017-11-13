@@ -579,6 +579,8 @@ int   main(void)
       char at1[] = "  \t \n  +1234Bl5ackbird";
       char  *mso16 = "\e06050";
 
+      printf("atoi %d\n", atoi("0020"));
+      printf("MYatoi %d\n", ft_atoi("0020"));
       printf("atoi %d\n", atoi("347547345"));
       printf("MYatoi %d\n", ft_atoi("347547345"));
            printf("atoi %d\n", atoi(mso16));
@@ -1075,8 +1077,7 @@ int   main(void)
       new = ft_lstmap(list, &parsemap);   
       makeputstr(new);    
 
-printf("\n\n");
-      ft_putchar_len("BlackBirdgTheBest");
+
 
   i = 0;
   return (0);

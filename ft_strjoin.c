@@ -21,7 +21,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (!s1 || !s2)
 		return (NULL);
 	mas = ft_strnew(ft_strlen(s1) + ft_strlen(s2));
-	if (mas == NULL)
+	if (!mas)
 	{
 		ft_memdel((void *)&mas);
 		return (NULL);

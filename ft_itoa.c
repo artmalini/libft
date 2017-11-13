@@ -12,25 +12,15 @@
 
 #include "libft.h"
 
-static int	get_length(int n)
-{
-	int		len;
-
-	len = 1;
-	while (n /= 10)
-		len++;
-	return (len);
-}
-
 char		*ft_itoa(int n)
 {
 	char	*mas;
 	int		len;
 	int		del;
 
-	if (n == -2147483648)
+	if (ft_minint(n))
 		return (ft_strdup("-2147483648"));
-	len = get_length(n);
+	len = ft_int_length(n);
 	del = n;
 	if (n < 0)
 		len++;

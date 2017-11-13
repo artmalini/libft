@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_len.c                                   :+:      :+:    :+:   */
+/*   ft_minint.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amakhiny <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/12 19:12:21 by amakhiny          #+#    #+#             */
-/*   Updated: 2017/11/12 19:15:18 by amakhiny         ###   ########.fr       */
+/*   Created: 2017/11/13 15:12:30 by amakhiny          #+#    #+#             */
+/*   Updated: 2017/11/13 15:14:35 by amakhiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putchar_len(char *str)
+int		ft_minint(int n)
 {
-	int		len;
-	int 	i;
-
-	i = 0;
-	len = 0;
-	while (str[i] != '\0')
-	{
-		len++;
-		i++;
-	}
-	write(1, &str, len + 1);
+	if (n == -2147483648)
+		return (1);
+	return (0);
 }

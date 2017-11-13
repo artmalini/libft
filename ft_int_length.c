@@ -1,35 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_int_length.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amakhiny <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/30 22:18:18 by amakhiny          #+#    #+#             */
-/*   Updated: 2017/10/30 22:18:22 by amakhiny         ###   ########.fr       */
+/*   Created: 2017/11/13 15:04:51 by amakhiny          #+#    #+#             */
+/*   Updated: 2017/11/13 15:06:32 by amakhiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnbr_fd(int n, int fd)
+int		ft_int_length(int n)
 {
-	char num;
+	int		len;
 
-	if (ft_minint(n))
-		ft_putstr_fd("-2147483648", fd);
-	else if (n < 0)
-	{
-		n = -n;
-		ft_putchar_fd('-', fd);
-		ft_putnbr_fd(n, fd);
-	}
-	else if (n >= 10)
-	{
-		num = (n % 10) + '0';
-		ft_putnbr_fd(n /= 10, fd);
-		ft_putchar_fd(num, fd);
-	}
-	else
-		ft_putchar_fd(n + '0', fd);
+	len = 1;
+	while (n /= 10)
+		len++;
+	return (len);
 }
