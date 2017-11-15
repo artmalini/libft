@@ -14,7 +14,7 @@
 
 int		ft_count_words(char const *s, char c)
 {
-	int len;
+	int		len;
 
 	len = 0;
 	while (*s != '\0')

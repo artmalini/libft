@@ -29,7 +29,10 @@ t_list		*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 	{
 		elem = f(lst);
 		if (!(result->next = ft_lstnew(elem->content, elem->content_size)))
+		{
+			free(result->next);
 			return (NULL);
+		}
 		result = result->next;
 		lst = lst->next;
 	}

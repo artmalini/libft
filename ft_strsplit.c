@@ -12,22 +12,40 @@
 
 #include "libft.h"
 
+static void		freesplit(char **mas, int len)
+{
+	int		i;
+
+	i = 0;
+	while (i < len)
+	{
+		free(mas[i]);
+		i++;
+	}
+	free(mas);
+	mas = NULL;
+}
+
 static char		**ft_finalize(char **mas, char const *s, char c, int len)
 {
 	int		i;
 	int		k;
 
-	i = -1;
-	while (++i < len)
+	i = 0;
+	while (i < len)
 	{
 		k = 0;
 		if (!(*(mas + i) = (char *)malloc(ft_getword_len(s, c) + 1)))
-			ft_memdel((void *)&mas);
+		{
+			freesplit(mas, len);
+			return (NULL);
+		}
 		while (*s == c)
 			s++;
 		while (*s != c && *s)
 			*(*(mas + i) + k++) = (char)*s++;
 		*(*(mas + i) + k) = '\0';
+		i++;
 	}
 	*(mas + i) = 0;
 	return (mas);
@@ -43,10 +61,7 @@ char			**ft_strsplit(char const *s, char c)
 		return (NULL);
 	len = ft_count_words(s, c);
 	if (!(mas = (char **)malloc(sizeof(*mas) * (len + 1))))
-	{
-		ft_strdel((void *)&mas);
 		return (NULL);
-	}
 	split = ft_finalize(mas, s, c, len);
 	return (split);
 }

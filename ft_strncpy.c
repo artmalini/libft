@@ -14,20 +14,18 @@
 
 char	*ft_strncpy(char *dst, const char *src, size_t len)
 {
-	size_t	ln;
-	size_t	slng;
+	char	*mas;
 
-	ln = 0;
-	slng = ft_strlen(src);
-	while (src[ln] != '\0' && ln < len)
+	mas = dst;
+	while (*src != '\0' && len > 0)
 	{
-		dst[ln] = src[ln];
-		ln++;
+		*mas++ = *src++;
+		--len;
 	}
-	while (ln < len)
+	while (len > 0)
 	{
-		dst[ln] = '\0';
-		ln++;
+		*mas++ = '\0';
+		--len;
 	}
 	return (dst);
 }

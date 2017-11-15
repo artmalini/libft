@@ -14,9 +14,11 @@
 
 void	ft_strdel(char **as)
 {
-	void **mas;
+	void	**mas;
 
-	mas = (void **)as;
 	if (as)
+	{
+		mas = (void **)as;
 		ft_memdel(mas);
+	}
 }

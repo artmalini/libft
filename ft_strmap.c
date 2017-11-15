@@ -22,12 +22,8 @@ char	*ft_strmap(char const *s, char (*f)(char))
 	if (!s || !f)
 		return (NULL);
 	ln = ft_strlen(s);
-	mas = ft_strnew(ln);
-	if (!mas)
-	{
-		ft_memdel((void *)&mas);
+	if (!(mas = ft_strnew(ln)))
 		return (NULL);
-	}
 	while (s[i] != '\0')
 	{
 		mas[i] = f(s[i]);

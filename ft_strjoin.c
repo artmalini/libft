@@ -20,12 +20,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	if (!s1 || !s2)
 		return (NULL);
-	mas = ft_strnew(ft_strlen(s1) + ft_strlen(s2));
-	if (!mas)
-	{
-		ft_memdel((void *)&mas);
+	if (!(mas = ft_strnew(ft_strlen(s1) + ft_strlen(s2))))
 		return (NULL);
-	}
 	i = -1;
 	while (s1[++i] != '\0')
 		mas[i] = s1[i];

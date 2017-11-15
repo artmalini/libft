@@ -15,12 +15,11 @@ GC = gcc
 CFLAGS = -c -Wall -Wextra -Werror -I libft.h
 SOURCE = *.c
 OBJ = $(SOURCE:.c=.o)
-	SRC = $(patsubst %, %, $(SOURCE))
 
 all: $(NAME)
 
 $(NAME):
-		$(GC) $(CFLAGS) $(SRC)
+		$(GC) $(CFLAGS) $(SOURCE)
 		ar rc $(NAME) $(OBJ)
 		gcc main.c -L. -lft -o tst
 

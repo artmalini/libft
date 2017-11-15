@@ -18,10 +18,7 @@ t_list		*ft_lstnew(void const *content, size_t content_size)
 
 	mas = NULL;
 	if (!(mas = (t_list *)malloc(sizeof(t_list))))
-	{
-		ft_memdel((void *)&mas);
 		return (NULL);
-	}
 	if (content == NULL)
 	{
 		mas->content = NULL;
@@ -31,7 +28,7 @@ t_list		*ft_lstnew(void const *content, size_t content_size)
 	{
 		if (!(mas->content = (void *)malloc(sizeof(content_size))))
 		{
-			ft_strdel((void *)&mas->content);
+			free(mas->content);
 			return (NULL);
 		}
 		ft_memcpy(mas->content, content, content_size);

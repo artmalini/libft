@@ -12,11 +12,11 @@
 
 #include "libft.h"
 
-static int		findresult(unsigned long acc, int dec)
+static int		findresult(unsigned long n, int dec)
 {
 	int		nbr;
 
-	nbr = (int)acc * dec;
+	nbr = (int)n * dec;
 	if (nbr == -1717986919)
 		return (-1);
 	if (nbr == 1717986919)
@@ -54,27 +54,27 @@ static char		*iswhite_nbr(const char *str)
 
 int				ft_atoi(const char *str)
 {
-	unsigned long	cutoff;
-	unsigned long	acc;
+	unsigned long	cutt;
+	unsigned long	nbr;
 	int				any;
 	char			*mas;
 
-	acc = 0;
+	nbr = 0;
 	any = 1;
 	mas = iswhite_nbr(str);
-	cutoff = 1844674407370955161;
+	cutt = 1844674407370955161;
 	while (*mas && (*mas >= '0' && *mas <= '9'))
 	{
-		if (acc > cutoff || acc == cutoff)
+		if (nbr > cutt || nbr == cutt)
 			any = -1;
 		else
 		{
-			if ((acc = acc * 10 + (*mas - '0')) > cutoff)
+			if ((nbr = nbr * 10 + (*mas - '0')) > cutt)
 				any = -1;
 		}
 		mas++;
 	}
 	if (any < 0)
-		acc = 1844674407370955161;
-	return (findresult(acc, isdigit(str)));
+		nbr = 1844674407370955161;
+	return (findresult(nbr, isdigit(str)));
 }

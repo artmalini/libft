@@ -14,7 +14,7 @@
 
 int		ft_getword_len(char const *s, char c)
 {
-	int	len;
+	int		len;
 
 	len = 0;
 	while (*s == c)

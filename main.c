@@ -162,6 +162,10 @@ int   main(void)
       printf("ft_bzero                          (2)\n");
       char mas40[] = "Blackbirds";
       char mas41[] = "Blackbird";
+      int mas50 = 5;
+
+      bzero(&mas50, 2);
+      printf("mas %d\n", mas50);
 
       bzero(mas40,7);
       i = 0;
@@ -192,6 +196,15 @@ int   main(void)
 
   memcpy(ll, bz, strlen(bz) + 1);                         //memcpy_char Blackbird
   ft_memcpy(ll2, bz, strlen(bz) + 1);                     //MYmemcpy_char Blackbird
+
+
+  memcpy(NULL,NULL, 3);
+  ft_memcpy(NULL, NULL, 3);
+
+
+  //memcpy(NULL, NULL, 3);
+  //ft_memcpy(NULL, NULL, 3);
+
    
    printf("memcpy_char %s\n", ll);
    printf("MYmemcpy_char %s\n", ll2);
@@ -221,15 +234,19 @@ int   main(void)
 
 /////////////////////////////////////////////////////                            !!! 5
       printf("\n\n");
-      printf("ft_memmove                          (5)\n");
-   char oldbv[] = "Black bird .....y";
-  char oldbv2[] = "Black bird .....";
+      printf("ft_memmove                          (5)\n");    //blak bird
+   char oldbv[] = "Black bird";
+  char oldbv2[] = "Black birds";
   //const char bv2[] = "ANGRY";
   
-   memmove(oldbv+11, oldbv+6, 5);                        //Black bird bird
-  ft_memmove(oldbv2+11, oldbv+6, 5);                    //Black bird bird
-   //printf("memmove_char %s\n", oldbv);
-  //printf("MYmemmove_char %s\n", oldbv2);
+  //   memmove(oldbv + 4, oldbv, 3);                      
+ // ft_memmove(oldbv2 + 4, oldbv, 3);
+
+   memmove(oldbv, oldbv + 4, 3);                        
+  ft_memmove(oldbv2, oldbv + 4, 3);                    
+   
+   printf("memmove_char %s\n", oldbv);
+  printf("MYmemmove_char %s\n", oldbv2);
 
    //char oldbv3[] = "Black birds";
   //char oldbv4[] = "Black bird";
@@ -623,6 +640,7 @@ int   main(void)
       printf("MYatoi %d\n", ft_atoi("123456789000000333333"));
       printf("atoi %d\n", atoi("1234567890000003333333"));
     printf("MYatoi %d\n", ft_atoi("1234567890000003333333"));
+     printf("MYatoi %d\n", ft_atoi("-42"));
  
 
         //rintf("atoi %d\n", atoi("9223372036854775807"));
@@ -879,7 +897,7 @@ int   main(void)
       printf("\n\n");
       printf("ft_strsub                           (40)\n");
       char mas24[] = "Blackbird";
-      printf("%s\n", ft_strsub(mas24, 2, 5));                  //ackbi
+      printf("%s\n", ft_strsub(mas24, 2, 10));                  //ackbi
       printf("%s\n", ft_strsub(mas24, 8, 9));                  // d
       printf("%s\n", ft_strsub(mas24, 3, 10));                 // ckbird
       printf("%s\n", ft_strsub(mas24, 6, 1));                  // null

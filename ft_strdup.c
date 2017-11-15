@@ -16,12 +16,8 @@ char	*ft_strdup(const char *s1)
 {
 	char	*mas;
 
-	mas = (char *)malloc(sizeof(*mas) * (ft_strlen(s1) + 1));
-	if (mas == NULL)
-	{
-		ft_memdel((void *)&mas);
+	if (!(mas = (char *)malloc(sizeof(*mas) * (ft_strlen(s1) + 1))))
 		return (NULL);
-	}
 	ft_strcpy(mas, s1);
 	return (mas);
 }

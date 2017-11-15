@@ -19,12 +19,8 @@ char	*ft_strsub(char const *s, unsigned int start, size_t len)
 
 	if (!s)
 		return (NULL);
-	mas = ft_strnew(len);
-	if (!mas)
-	{
-		ft_memdel((void *)&mas);
+	if (!(mas = ft_strnew(len)))
 		return (NULL);
-	}
 	i = 0;
 	while (i < len)
 		mas[i++] = s[start++];

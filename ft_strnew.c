@@ -16,11 +16,7 @@ char	*ft_strnew(size_t size)
 {
 	char	*mas;
 
-	mas = ft_memalloc(size + 1);
-	if (!mas)
-	{
-		ft_memdel((void *)&mas);
+	if (!(mas = ft_memalloc(size + 1)))
 		return (NULL);
-	}
 	return (mas);
 }
